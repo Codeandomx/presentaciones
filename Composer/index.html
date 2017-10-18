@@ -1,0 +1,164 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="bower_components/reveal-highlight-themes/styles/monokai_sublime.css" id="highlight-theme">
+		<style type="text/css">
+			.img { width: 100px; position: fixed; top: 10px; right: 20px}
+			.left { text-align: left; }
+			.justify { text-align: justify; }
+		</style>
+	</head>
+	<body>
+		<img class="img" src="/img/codeando_logo.png">
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>CODEANDO<h1>
+					<h2>Composer</h2>
+					<p><small>Instructor Paulo Andrade / <a href="https://twitter.com/paulo_866">@paulo_866</a></small></p>
+					<p><small>Codeando / <a href="https://twitter.com/codeando_org">@codeando_org</a></small></p>
+				</section>
+				<section>
+					<h3>¿Que es composer?</h3>
+					<div class="justify">
+					<p>Es una herramienta para la gestión de dependencias en PHP para nuestros proyectos, facilitando su administración (instalación y actualización).</p>
+					</div>
+				</section>
+				<section>
+					<section>
+						<h2>INSTALACIÓN LINUX</h2>
+					</section>
+					<section>
+						<h3>Antes de instalar</h3>
+						<div class="justify">
+						<p>Necesitamos instalar las siguientes dependencias antes de instalar composer.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
+$ sudo apt-get install curl php5-cli git
+						</code></pre>
+						<div class="justify">
+						<p>Nota: Si utilizas PHP 7, cambia "php5-cli" por "php7.0-cli".</p>
+					</section>
+					<section>
+						<h3>Instalación composer</h3>
+						<div class="justify">
+						<p>Descargamos e instalamos composer como un comando del sistema.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
+$ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer						
+						</code></pre>
+					</section>
+					<section>
+						<h3>Verificamos la instalación</h3>
+						<div class="justify">
+						<p>Para comprobar que se instalo correctamente ejecutamos el siguiente comando.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
+$ composer
+						</code></pre>
+					</section>
+					<section>
+						<h3>Debemos ver algo parecido</h3>
+						<img src="/img/composer.png">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>CREAR COMPOSER.JSON</h2>
+					</section>
+					<section>
+						<h3>¿Para que nos sirve?</h3>
+						<div class="justify">
+						<p>Nos ayuda a gestionar las versiones de las dependencias administradas por composer en un proyecto, de esta forma el proyecto estará consistente en todo momento.</p>
+						</div>
+					</section>
+					<section>
+						<h3>Crear el archivo composer.json</h3>
+						<div class="justify">
+						<p>Debemos crear un archivo llamado "composer.json" en el directorio raíz de nuestro proyecto, puede seguir el siguiente ejemplo.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
+{
+    "require": {
+    }
+}
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>INSTALACIÓN DE DEPENDENCIAS</h2>
+					</section>
+					<section>
+						<h3>Instalar dependencias</h3>
+						<div class="justify">
+						<p>Puede instalar dependencias con composer utilizando el siguiente comando.-.</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
+$ composer install nombre_dependencia
+						</code></pre>
+					</section>
+					<section>
+						<h3>Archivo composer.lock</h3>
+						<div class="justify">
+						<p>Después de instalar la dependencia, composer almacena la versión instalada en el archivo composer.lock, de esta forma, el proyecto se mantendrá consistente trabajando siempre con las mismas versiones.</p>
+						</div>
+					</section>
+					<section>
+						<h3>Directorio de instalación</h3>
+						<div class="justify">
+						<p>El directorio por defecto es "vendor" ubicado en la raíz de nuestro proyecto.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
++ Directorio raiz
+    - vendor
+    composer.json
+    composer.lock
+						</code></pre>
+					</section>
+					<section>
+						<h3>Composer y git</h3>
+						<div class="justify">
+						<p>Si utilizas git como sistema de subversiones, es recomendable añadir el directorio "vendor" al archivo ".gitignore" para obligar a instalar las dependencias cada ves que se descargue el proyecto.</p>
+						<p>Por ultimo no olvides subir los archivos composer.json y composer.lock.</p>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>AUTOLOAD</h2>
+					</section>
+					<section>
+						<h3>¿Para que nos sirve?</h3>
+						<div class="justify">
+						<p>Se trata de un sistema de autocargado para nuestras dependencias, es decir con un solo "require" podemos añadir todas las dependencias a nuestro archivo PHP para trabajar</p>
+						</div>
+					</section>
+					<section>
+						<h3>Utilizar el autoload</h3>
+						<div class="justify">
+						<p>Añade la siguiente linea al archivo PHP en el que vas a incluir las dependencias.-</p>
+						</div>
+						<pre><code class="php" data-trim contenteditable>
+require_once "vendor/autoload.php"
+
+// Aqui inicializamos las dependencias
+						</code></pre>
+						<div class="justify">
+						<p>Nota.- La inicialización depende de cada dependencia.</p>
+						</div>
+					</section>
+				</section>
+				<section>
+					<h2>Gracias</h2>
+				</section>
+			</div>
+		</div>
+		<script src="js/reveal.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/config.js"></script>
+	</body>
+</html>
