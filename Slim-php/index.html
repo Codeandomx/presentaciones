@@ -1,0 +1,177 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="bower_components/reveal-highlight-themes/styles/monokai_sublime.css" id="highlight-theme">
+		<style type="text/css">
+			.img { width: 100px; position: fixed; top: 10px; right: 20px}
+			.left { text-align: left; }
+			.justify { text-align: justify; }
+		</style>
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	</head>
+	<body>
+		<img class="img" src="/img/codeando_logo.png">
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>CODEANDO<h1>
+					<h2>Slim PHP</h2>
+					<p><small>Instructor Paulo Andrade / <a href="https://twitter.com/paulo_866">@paulo_866</a></small></p>
+					<p><small>Codeando / <a href="https://twitter.com/codeando_org">@codeando_org</a></small></p>
+				</section>
+				<section>
+					<h3>¿Que es slim?</h3>
+					<div class="justify">
+					<p>Slim es un micro framework PHP que nos ayuda a escribir rápidamente aplicaciones web y APIs simples pero potentes</p>
+					</div>
+				</section>
+				<section>
+					<section>
+						<h2>INSTALACIÓN SLIM PHP</h2>
+					</section>
+					<section>
+						<h3>Antes de instalar</h3>
+						<div class="justify">
+						<p>Necesitamos tener instalado en nuestro ordenador.-</p>
+						</div>
+						<div class="left">
+						<ul>
+							<li>PHP 5.5 o superior.</li>
+							<li>Composer</li>
+						</ul>
+						</div>
+						<div class="justify">
+						<p>Nota: Puede ver la presentación sobre <a href="http://drive.codeando.org/composer/" target="_blank">instalación de composer</a></p>
+						</div>
+					</section>
+					<section>
+						<h3>Instalación Slim PHP 3</h3>
+						<div class="justify">
+						<p>Abrimos la terminal y nos ubicamos en la raiz de nuestro proyecto, ejecutamos el siguiente comando.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
+$ composer require slim/slim "^3.0"
+						</code></pre>
+					</section>
+					<section>
+						<h3>Estructura del proyecto</h3>
+						<div class="justify">
+						<p>Terminada la instalación debemos tener una estructura de directorios como esta.-</p>
+						</div>
+						<pre><code class="javascript" data-trim contenteditable>
++ directorio raiz
+  - vendor
+    - ...
+    - slim
+    autoload.php
+  composer.json
+  composer.lock
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>APLICACIÓN BASICA</h2>
+					</section>
+					<section>
+						<h3>Archivo index.php</h3>
+						<div class="justify">
+							<p>Es el archivo principal de nuestra App y debe contener lo siguiente.-</p>
+						</div>
+						<pre><code class="php" data-trim contenteditable>
+require 'vendor/autoload.php';
+
+$config = [
+	'settings' => [
+		'displayErrorDetails' => true,
+		'addContentLengthHeader' => false
+	]
+];
+
+$app = new Slim\App($config);
+$app->get('\hello\{name}', function($req, $res, $args = []){
+	return $res->write('Hello '.$args['name']);
+});
+$app->run();
+						</code></pre>
+					</section>
+					<section>
+						<h3>Configuración</h3>
+						<div class="left">
+							<ul>
+								<li>displayErrorDetails.- Muestra información adicional sobre las excepciones.</li>
+								<li>addContentLengthHeader.- Agrega una cabecera "Content-Length" a la respuesta.</li>
+							</ul>
+						</div>
+						<div class="justify">
+							<p>Nota: "Content-Length" indica el tamaño en bytes del cuerpo HTTP de la solicitud o respuesta.</p>
+						</div>
+					</section>
+					<section>
+						<h3>Servidor local</h3>
+						<div class="justify">
+							<p>Para visualizar nuestra App trabajando podemos correr un servidor local, en la terminal nos ubicamos en el directorio raiz del proyecto y ejecutamos el siguiente comando.-</p>
+						</div>
+						<pre><code class="php" data-trim contenteditable>
+$ php -S localhost:3000
+						</code></pre>
+						<div class="justify">
+							<p>Nota: Ingrese a <a href="http://localhost:3000">http://localhost:3000</a> para ver la App corriendo.</p>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>DESPLIEGUE EN SERVIDOR</h2>
+					</section>
+					<section>
+						<h3>Cambiar a modo producción</h3>
+						<div class="justify">
+							<p>En la configuración de Slim, cambie el valor de "displayErrorDetails" para no mostrar detalles de excepciones en producción..-</p>
+						</div>
+						<pre><code class="php" data-trim contenteditable>
+'displayErrorDetails' => false
+						</code></pre>
+					</section>
+					<section>
+						<h3>Configuración php.ini</h3>
+						<div class="justify">
+							<p>Si aun visualiza detalles de error, debe contactar con su proveedor de hosting y pedirle que desactive la visualización de errores modificando la siguiente directiva en el archivo php.ini.-</p>
+						</div>
+						<pre><code class="php" data-trim contenteditable>
+display_error = 0
+						</code></pre>
+					</section>
+					<section>
+						<h3>Archivo .htaccess</h3>
+						<div class="justify">
+							<p>Debe crear un archivo ".htaccess" en el directorio principal del proyecto con el siguiente contenido.-</p>
+						</div>
+						<pre><code class="php" data-trim contenteditable>
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+						</code></pre>
+					</section>
+					<section>
+						<h3>Todo Listo</h3>
+						<div class="justify">
+							<p>Si llego a este punto, ya tiene todo listo para subir su proyecto al servidor en producción, contacte con su proveedor de hosting para más información.</p>
+						</div>
+					</section>
+				</section>
+				<section>
+					<h2>Gracias</h2>
+				</section>
+			</div>
+		</div>
+		<script src="js/reveal.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/config.js"></script>
+	</body>
+</html>
