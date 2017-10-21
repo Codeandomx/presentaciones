@@ -6,19 +6,21 @@
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="bower_components/reveal-highlight-themes/styles/monokai_sublime.css" id="highlight-theme">
 		<style type="text/css">
-			.img { width: 100px; position: fixed; top: 10px; right: 20px}
+			.img { width: 100px; position: fixed; top: 10px; right: 20px; z-index: 999}
+			.img-left { width: 50px; position: fixed; top: 20px; left: 20px; z-index: 998}
 			.left { text-align: left; }
 			.justify { text-align: justify; }
 		</style>
 		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	</head>
 	<body>
-		<img class="img" src="/img/codeando_logo.png">
+		<a href="http://codeando.org"><img class="img" src="/img/codeando_logo.png"></a>
+		<a href="http://drive.codeando.org"><img class="img-left" src="/img/back.png"></a>
 		<div class="reveal">
 			<div class="slides">
 				<section>
 					<h1>CODEANDO<h1>
-					<h2>Slim PHP</h2>
+					<h2>Slim 3 PHP</h2>
 					<p><small>Instructor Paulo Andrade / <a href="https://twitter.com/paulo_866">@paulo_866</a></small></p>
 					<p><small>Codeando / <a href="https://twitter.com/codeando_org">@codeando_org</a></small></p>
 				</section>
@@ -50,7 +52,7 @@
 					<section>
 						<h3>Instalación Slim PHP 3</h3>
 						<div class="justify">
-						<p>Abrimos la terminal y nos ubicamos en la raiz de nuestro proyecto, ejecutamos el siguiente comando.-</p>
+						<p>Abrimos la terminal y nos ubicamos en la raíz de nuestro proyecto, ejecutamos el siguiente comando.-</p>
 						</div>
 						<pre><code class="javascript" data-trim contenteditable>
 $ composer require slim/slim "^3.0"
@@ -113,7 +115,7 @@ $app->run();
 					<section>
 						<h3>Servidor local</h3>
 						<div class="justify">
-							<p>Para visualizar nuestra App trabajando podemos correr un servidor local, en la terminal nos ubicamos en el directorio raiz del proyecto y ejecutamos el siguiente comando.-</p>
+							<p>Para visualizar nuestra App trabajando podemos correr un servidor local, en la terminal nos ubicamos en el directorio raíz del proyecto y ejecutamos el siguiente comando.-</p>
 						</div>
 						<pre><code class="php" data-trim contenteditable>
 $ php -S localhost:3000
