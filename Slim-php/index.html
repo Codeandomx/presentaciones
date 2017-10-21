@@ -2,11 +2,12 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>Slim 3 php | Codeando</title>
+		<title>Slim 3 php guia basica | Codeando</title>
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/moon.css">
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="bower_components/reveal-highlight-themes/styles/monokai_sublime.css" id="highlight-theme">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<style type="text/css">
 			.img { width: 100px; position: fixed; top: 10px; right: 20px; z-index: 999}
 			.img-left { width: 50px; position: fixed; top: 20px; left: 20px; z-index: 998}
@@ -17,7 +18,7 @@
 	</head>
 	<body>
 		<a href="http://codeando.org"><img class="img" src="/img/codeando_logo.png"></a>
-		<a href="http://drive.codeando.org"><img class="img-left" src="/img/back.png"></a>
+		<a href="/"><img class="img-left" src="/img/back.png"></a>
 		<div class="reveal">
 			<div class="slides">
 				<section>
@@ -52,7 +53,7 @@
 						</div>
 					</section>
 					<section>
-						<h3>Instalación Slim PHP 3</h3>
+						<h3>Instalación Slim 3 PHP</h3>
 						<div class="justify">
 						<p>Abrimos la terminal y nos ubicamos en la raíz de nuestro proyecto, ejecutamos el siguiente comando.-</p>
 						</div>
@@ -85,7 +86,7 @@ $ composer require slim/slim "^3.0"
 						<div class="justify">
 							<p>Es el archivo principal de nuestra App y debe contener lo siguiente.-</p>
 						</div>
-						<pre><code class="php" data-trim contenteditable>
+						<pre><code class="php" data-trim>
 require 'vendor/autoload.php';
 
 $config = [
